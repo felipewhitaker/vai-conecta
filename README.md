@@ -59,3 +59,22 @@ The demand time series seem to be groupable as follows:
 Following their behavior, it is clear that most have a strong sazonality component, while others have trend. It is also important to notice that these series have different lenghts.
 
 Finally, their behaviour seems normally distributed, which is important for many of the methods that were explored during the modelling class.
+
+## Troubleshooting
+
+### Creating an Anaconda Environment
+
+The easiest way to run this project is to clone this repository and create a virtual environment with `conda`, as follows:
+
+```bash
+git clone https://github.com/felipewhitaker/vai-conecta.git
+conda create --prefix .conda --file requirements.txt
+```
+
+### Project Requirements
+
+`requirements.txt` is available on the root of this project.
+
+```bash
+conda list -e > requirements.txt
+```
