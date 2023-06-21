@@ -60,6 +60,46 @@ Following their behavior, it is clear that most have a strong sazonality compone
 
 Finally, their behaviour seems normally distributed, which is important for many of the methods that were explored during the modelling class.
 
+### Modelling
+
+The current benchmark is a moving average of the last three months. This has been implemented in `src/model/notebook.ipynb` with a `MovingAverage` estimator and `Naive` model.
+
+The following ideas seem applicable:
+
+-[x] Use a Naive model to calculate the average between the seasonal lag (12) and the autoregressive value (last known value)
+  - This has been tested and shown to beat (MAE) the benchmark in approximately 70% of the series
+- [x] Estimate a LinearRegression instead of averaging both values
+  - This has been tested, but has not shown as good results.
+- [ ] Combine the Moving Average with the Seasonal Lag (e.g. `SARIMA(1, 0, 3)(1, 0, 0, 12)`)
+
+#### Guiding Questions
+
+The main questions to be answered are:
+
+1. What is the forecasting method?
+
+Because of the limited time, the effort was mainly put in analysing the data and extracting insights. From there we recognized that some values were duplicated; resulting in them being treated by mean aggregation.
+
+2. Is it better than the moving average?
+
+Moving Averages are easy to implement and tend to show good results. Unfortunately, this is not true if the series has a high explainable variance by factors such as sazonality. Therefore, it is expected that series with high sazonality can have their forecasts improved; but this is not expected for other series.
+
+3. What is the hardest product to forecast?
+
+TODO add evaluation
+
+The hardest product to forecast is a product that resembles white noise.
+
+4. What are the next steps?
+
+Because of how the market is positioned, having too much shoe stock is terrible due to warehousing, but being too lean might result in lost sales. Therefore, the next steps are related to estimating the best security stock. An easy option as benchmark is using the train standard deviation as a risk measurement, and stocking, for example, 2 deviations.
+
+#### Challenges
+
+An important challenge is the number of series, which brings different patterns and different lenghts; making applying any model in a programatic way a challenge.
+
+Related to the challenge above, comparing models is also difficult, especially if the comparison strategy is not well defined. Therefore, having a fast evaluation benchmark is also very necessary.
+
 ## Troubleshooting
 
 ### Creating an Anaconda Environment
