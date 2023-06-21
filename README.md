@@ -50,7 +50,12 @@ Description: Demand forecast of M+0 to M+3 executed by the S&OP team for each pr
 
 ### Exploratory Analysis
 
-- Todas as SKUs são vendidas todos os meses?
-- Qual é a média e variância de cada um dos produtos? Qual é a distribuição de cada produto?
-- Qual foi o comportamento por Linha de Produto, Categoria e SKU?
-- Há variação do preço com o tempo? E qual é a distribuição dos preços por Marca, Categoria e SKU?
+The demand time series seem to be groupable as follows:
+
+![Expected Groups](./src/imgs/expected_groups.png)
+
+- [ ] Calculate correlation between time series to validate hypothesis
+
+Following their behavior, it is clear that most have a strong sazonality component, while others have trend. It is also important to notice that these series have different lenghts.
+
+Finally, their behaviour seems normally distributed, which is important for many of the methods that were explored during the modelling class.
