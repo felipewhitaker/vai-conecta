@@ -70,7 +70,7 @@ The following ideas seem applicable:
   - This has been tested and shown to beat (MAE) the benchmark in approximately 70% of the series
 - [x] Estimate a LinearRegression instead of averaging both values
   - This has been tested, but has not shown as good results.
-- [ ] Combine the Moving Average with the Seasonal Lag (e.g. `SARIMA(1, 0, 3)(1, 0, 0, 12)`)
+- [x] Combine the Moving Average with the Seasonal Lag (e.g. `SARIMA(1, 0, 3)(1, 0, 0, 12)`)
 
 #### Guiding Questions
 
@@ -99,6 +99,29 @@ Because of how the market is positioned, having too much shoe stock is terrible 
 An important challenge is the number of series, which brings different patterns and different lenghts; making applying any model in a programatic way a challenge.
 
 Related to the challenge above, comparing models is also difficult, especially if the comparison strategy is not well defined. Therefore, having a fast evaluation benchmark is also very necessary.
+
+#### Initial Solution
+
+For an initial solution, the objective is to show that the seasonal component should be considered. For that, two models were used:
+
+- `benchmark`, a moving average model, implemented via `SARIMAX(0, 0, 3)(0, 0, 0, 12)("c")`
+- `seasonal`, an airline seasonal model, implemented via `SARIMAX(1, 0, 1)(1, 0, 0, 12)("c")`
+
+It is important to note, as can be seen in [`./src/model/notebook.ipynb`](./src/model/notebook.ipynb), that some of the models have not converged, so a further study should be done.
+
+However, the results were still better than the `benchmark` used by the S&OP team. To illustrate that, the aggregated result is shown below:
+
+![sum of series](./src/imgs/sum.png)
+
+Another improvement to be made is to consider the best models for summing them, instead of summing only `benchmark` and only `seasonal`.
+
+#### Next Steps
+
+There are three important next steps:
+
+- Calculate the ACF and PACF for each SKU and correlate them with the objective of confirming the hypothesis that some series are very closely related - which could allow an aggregated forecast;
+- Use the model residues to calculate a security stock to be kept in the warehouse, because the lost sale cost is much greater than the warehouse costs; and
+- Explore time series hierarquical models, which will make requests agree when summed up.
 
 ## Troubleshooting
 
