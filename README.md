@@ -86,11 +86,11 @@ Moving Averages are easy to implement and tend to show good results. Unfortunate
 
 3. What is the hardest product to forecast?
 
-TODO add evaluation
-
 The hardest product to forecast is a product that resembles white noise.
 
-4. What are the next steps?
+Forecasts are evaluated with Mean Absolute Error (`MAE`), as that is a simple metric regarding whole products.
+
+1. What are the next steps?
 
 Because of how the market is positioned, having too much shoe stock is terrible due to warehousing, but being too lean might result in lost sales. Therefore, the next steps are related to estimating the best security stock. An easy option as benchmark is using the train standard deviation as a risk measurement, and stocking, for example, 2 deviations.
 
