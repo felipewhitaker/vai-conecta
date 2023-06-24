@@ -66,8 +66,9 @@ The current benchmark is a moving average of the last three months. This has bee
 
 The following ideas seem applicable:
 
--[x] Use a Naive model to calculate the average between the seasonal lag (12) and the autoregressive value (last known value)
+- [x] Use a Naive model to calculate the average between the seasonal lag (12) and the autoregressive value (last known value)
   - This has been tested and shown to beat (MAE) the benchmark in approximately 70% of the series
+
 - [x] Estimate a LinearRegression instead of averaging both values
   - This has been tested, but has not shown as good results.
 - [x] Combine the Moving Average with the Seasonal Lag (e.g. `SARIMA(1, 0, 3)(1, 0, 0, 12)`)
